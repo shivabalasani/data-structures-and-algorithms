@@ -1,0 +1,279 @@
+Big O Notation - gives us a way of comparing time complexity of different algorithms in an objective manner which is hardware independent manner
+--------------------------------------------------------------------------------------------------
+O(1)      	- Constant
+O(logn) 	- Logarithmic (to the base 2)
+O(n) 		- Linear
+O(nlogn)	- n log-star n (to the base 2)
+O(n^2) 		- Quadratic (n squared)
+
+Number of steps involved to run an algorithm - Time Complexity
+Memory need to run an algorithm 	- Memory Complexity
+
+Arrays
+--------------------------------------------------------------------------------------------------
+- Stored as contiguous block in memory
+- Every element occupies the same amount of space in memory.
+- If and array starts at memory address x, and the size of each element in the array is y, we can calculate the memory address of the ith element by using the expression : x + i * y
+- If we know the index of an element, the time to retrieve the element will be the same, no matter where it is in the array.
+- Retrieving an element in the array will have constant time complexity if the index is know.
+
+
+Sort Algorithms
+--------------------------------------------------------------------------------------------------
+Unstable Sort - Relative ordering of the duplicate items will not be preserved.
+Stable Sort - Relative ordering of the duplicate items will be preserved.
+
+Bubble Sort - performance degrades as number of items increase. Stable Sort
+Selection Sort - Unstable Sort
+Insertion Sort - grows the sorted partitioning from the start
+Shell Sort - reduce the amount of shifting required
+Merge Sort - Divide and conquer algorithm
+Quick Sort - Divide and conquer algorithm
+CountingSort - Makes assumptions about the data
+RadixSort - Makes assumptions about the data
+
+Lists
+--------------------------------------------------------------------------------------------------
+ArrayList - Resizable-array implementation of the List interface.
+			This class is roughly equivalent to Vector, except that it is unsynchronized
+			ArrayList​()	 Constructs an empty list with an initial capacity of ten.
+Vectors - The Vector class implements a growable array of objects. Like an array, it contains components that can be accessed using an integer index. 
+		  However, the size of a Vector can grow or shrink as needed to accommodate adding and removing items after the Vector has been created.
+		  Vector is synchronized. If a thread-safe implementation is not needed, it is recommended to use ArrayList in place of Vector.
+SinglyLinkedList - Each item in the list is called a node. The first item in the list is the head of the list
+DoublyLinkedList - Each item in the list has next and previous fields. This list has a head and a tail.
+
+
+LinkedList JDK - Doubly-linked list implementation of the List and Deque interfaces. Implements all optional list operations, and permits all elements (including null).
+				 Note that this implementation is not synchronized
+				 
+Stacks
+--------------------------------------------------------------------------------------------------
+Abstract data type. Two popular ways of implementing stacks are Arrays and LinkedList
+LIFO - Last in, first out
+push - adds an item as the top item on the stack
+pop - removes the top item on the stack
+peek - gets the top item on the stack without popping it
+Ideal backing data structure: linked list
+O(1) for push, pop and peek when using a linked list
+If you use an array the push is O(n) because the array may have to be resized.
+If you know the maximum number of items that will ever be on the stack an array can be a good choice.
+If memory is tight, an array might be a good choice.
+Linked list is deal
+
+Stack JDK - The Stack class represents a last-in-first-out (LIFO) stack of objects. It extends class Vector with five operations that allow a vector to be treated as a stack. 
+	The usual push and pop operations are provided, as well as a method to peek at the top item on the stack, a method to test for whether the stack is empty, and a method to search the stack for an 
+	item and discover how far it is from the top.
+	When a stack is first created, it contains no items.
+
+A more complete and consistent set of LIFO stack operations is provided by the Deque interface and its implementations, which should be used in preference to this class.
+Deque<Integer> stack = new ArrayDeque<Integer>();
+
+Queues
+--------------------------------------------------------------------------------------------------
+Abstract data type. Two popular ways of implementing queues are Arrays and LinkedList
+FIFO - first in first out
+add - also called enqueue - add item to the end of the queue
+remove - also called dequeue - remove item at the front of the queue
+peek - get the item at the front of the queue, but don't remove it
+
+Summary of Queue methods  Throws exception	Returns special value
+-----------------------------------------------------------------
+Insert						add(e)				offer(e)
+Remove						remove()			poll()
+Examine						element()			peek()
+----------------------------------------------------------------
+
+ArrayBlockingQueue - A bounded blocking queue backed by an array. This queue orders elements FIFO (first-in-first-out). This is a classic "bounded buffer", in which a fixed-sized array holds elements 
+inserted by producers and extracted by consumers. Once created, the capacity cannot be changed. Attempts to put an element into a full queue will result in the operation blocking; attempts to take an 
+element from an empty queue will similarly block.
+
+ConcurrentLinkedQueue - An unbounded thread-safe queue based on linked nodes. This implementation employs an efficient non-blocking algorithm.
+Deque- A linear collection that supports element insertion and removal at both ends. 
+ArrayDeque - Resizable-array implementation of the Deque interface. Array deques have no capacity restrictions; they grow as necessary to support usage.
+
+Hashtable
+--------------------------------------------------------------------------------------------------
+Abstract data type. Provide access to data using keys.
+Key doesn't have to be an integer.
+Consists of key/value pairs - data types don't have to match.
+Optimized for retrieval ( when you know the key)
+Associative array is one type of hash table.
+
+Hashing
+--------------
+Maps keys of any data type to an integer
+Hash function maps key to int
+In Java, hash function is Object.hashcode()
+Collision occurs when more than one value has the same hashed value.
+
+Load Factor
+--------------
+Tells us how full a hash table is
+Load factor = #of itmes /capacity = size/capacity
+Load factor is used to decide when to resize the array backing the hash table.
+Don't want load factor too low (lots of empty space)
+Don't want load factor too high ( will increase the likelihood of collisions)
+Can play a role in determining the time complexity for retrieval.
+
+Add to a Hash Table backed by an array
+--------------------------------------
+Provide a key/value pair
+Use a hash function to hash the key to an int value
+Store the value at the hashed key value - this is the index into the array.
+
+Retrieve a value from a hash table
+----------------------------------
+Provide the key.
+Use the same hash function to hash the key to an int value.
+Retrieve the value stored a the hashed key value.
+
+JDK Map 
+-----
+An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.
+
+Hashtable
+-----------
+This class implements a hash table, which maps keys to values. Any non-null object can be used as a key or as a value.
+As of the Java 2 platform v1.2, this class was retrofitted to implement the Map interface, making it a member of the Java Collections Framework. Unlike the new collection implementations, 
+Hashtable is synchronized. If a thread-safe implementation is not needed, it is recommended to use HashMap in place of Hashtable. If a thread-safe highly-concurrent implementation is desired,
+then it is recommended to use ConcurrentHashMap in place of Hashtable.
+
+HashMap
+-----------
+Hash table based implementation of the Map interface. This implementation provides all of the optional map operations, and permits null values and the null key.
+An instance of HashMap has two parameters that affect its performance: initial capacity and load factor. The capacity is the number of buckets in the hash table, 
+and the initial capacity is simply the capacity at the time the hash table is created. The load factor is a measure of how full the hash table is allowed to get before its capacity is 
+automatically increased. As a general rule, the default load factor (.75) offers a good tradeoff between time and space costs.
+
+ConcurrentHashMap
+------------------
+A hash table supporting full concurrency of retrievals and high expected concurrency for updates.
+
+LinkedHashMap
+---------------
+Hash table and linked list implementation of the Map interface, with predictable iteration order. This implementation differs from HashMap in that it maintains a doubly-linked list running through 
+all of its entries. This linked list defines the iteration ordering, which is normally the order in which keys were inserted into the map (insertion-order)
+
+
+
+Trees
+--------------------------------------------------------------------------------------------------
+Every item in the tree is a node.
+The node at the top of the tree is the root.
+Every non-root node has one and only one parent.
+A leaf node has no children
+A singleton tree has only one node - the root
+
+Binary Tree
+-----------------
+Every node has 0,1 or 2 children.
+Children are referred to as left child and right child.
+In practice, we use brinary search trees
+
+Binary Search Tree
+-------------------
+Can perform insertions, deletions and retrievals in O(logn) time.
+The left child always has a smaller value than its parent.
+The right child always has a larger value than its parent.
+This means everything to the left of the root is less than the value of the root, and everything to the right of the root is greater than the value of the root.
+Because of that , we can do a binary search.
+
+Traversal
+-----------
+Level - visit nodes on each level.
+Pre-order - visit the root of every subtree first.
+Post-order - visit the root of every subtree last.
+In-order - visit left child, then root, then right child.
+
+
+TreeMap JDK
+----------
+A Red-Black tree based NavigableMap implementation. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, 
+depending on which constructor is used. This implementation provides guaranteed log(n) time cost for the containsKey, get, put and remove operations.
+
+
+Treeset JDK
+------------
+A NavigableSet implementation based on a TreeMap. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending 
+on which constructor is used. This implementation provides guaranteed log(n) time cost for the basic operations (add, remove and contains).
+
+
+Heaps
+--------------------------------------------------------------------------------------------------
+A complete binary tree
+Must satisfy the heap property
+Max heap: Every parent is greater than or equal to its children
+Min heap: Every parent is less than or equal to its children.
+
+A binary heap must be a complete tree.
+Children are added at each level from left to right
+Usually implemented as arrays.
+The maximum or minumum value will always be at the root of the tree - the advantage of using a heap
+Heapify: process of converting a binary tree into a heap - this oftern has to be done after an insertion or deletion.
+No required ordering between siblings.
+
+Heaps as Arrays
+---------------
+We can store binary heaps as arrays
+We put the root at array[0]
+We then traverse each level from left to right, and so the left child of the root would go inot array[1], its right child into array[2]
+
+For the node at array[i]
+left child = 2i + 1
+right child = 2i + 2
+
+parent = floor((i-1)/2)
+
+Insert into Heap
+-----------------
+Always add new items to the end of the array.
+Then we have to fix the heap(heapfiy)
+We compare the new item against its parent.
+If the item is greater than its parent, we swap it with the parent.
+We then rinse and repeat.
+
+Heaps - Delete
+--------------
+Must choose a replacement value
+Will take the rightmost value, so that the tree remains complete
+Then we must heapfiy the heap
+When replacement value is greater than parent, fix heap above. Otherwise, fix heap below.
+
+Fix heap above - same as insert. Swap replacement value with parent.
+Fix heap below - swap the replacement value with the larger of its two children.
+Rinse and repeat in both cases until the replacement value is in its correct position.
+Will only need to fix up or down, not both.
+
+Priority Queue
+--------------
+An unbounded priority queue based on a priority heap. The elements of the priority queue are ordered according to their natural ordering, or by a 
+Comparator provided at queue construction time, depending on which constructor is used.
+
+The head of this queue is the least element with respect to the specified ordering. If multiple elements are tied for least value, the head is one of 
+those elements -- ties are broken arbitrarily. The queue retrieval operations poll, remove, peek, and element access the element at the head of the queue.
+
+A priority queue is unbounded, but has an internal capacity governing the size of an array used to store the elements on the queue.
+
+Note that this implementation is not synchronized. Multiple threads should not access a PriorityQueue instance concurrently if any of the threads modifies the queue.
+Instead, use the thread-safe PriorityBlockingQueue class.
+
+Heap Sort
+---------
+We know the root has the largest value
+Swap root with last element in the array.
+Heapify the tree, but exlude the last node
+After heapify, second largest element is at the root.
+Rinse and repeat.
+
+
+Sets
+--------------------------------------------------------------------------------------------------
+A collection that contains no duplicate elements. More formally, sets contain no pair of elements e1 and e2 such that e1.equals(e2), and at most one null element.
+
+HashSet
+--------
+This class implements the Set interface, backed by a hash table (actually a HashMap instance). It makes no guarantees as to the iteration order of the set; 
+in particular, it does not guarantee that the order will remain constant over time. This class permits the null element.
+
+
